@@ -20,6 +20,10 @@ Autoload="*res://Scripts/Autoload.gd"
 game_data="*res://Scripts/Game_Data.gd"
 scene_manager="*res://Scripts/Scene_Manager.gd"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/A_Bra/Documents/happy vale 1.avi"
+
 [global_group]
 
 navigation_mesh_source_group=""
