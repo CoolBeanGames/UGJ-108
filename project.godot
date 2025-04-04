@@ -14,6 +14,12 @@ config/name="Happy Vale"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Autoload="*res://Scripts/Autoload.gd"
+game_data="*res://Scripts/Game_Data.gd"
+scene_manager="*res://Scripts/Scene_Manager.gd"
+
 [rendering]
 
 renderer/rendering_method="mobile"
