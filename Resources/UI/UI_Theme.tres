@@ -1,0 +1,81 @@
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://bmuslwg36aeuw"]
+
+[ext_resource type="FontFile" uid="uid://cpgavanyl17pj" path="res://Resources/font/timeburner-font/TimeburnerBold-peGR.ttf" id="1_7ojl3"]
+[ext_resource type="StyleBox" uid="uid://11ahp7hyckex" path="res://Resources/UI/button_box_hover.tres" id="2_4fwi6"]
+[ext_resource type="StyleBox" uid="uid://b17u0e2fnaws4" path="res://Resources/UI/button_box.tres" id="2_7nmp3"]
+[ext_resource type="Texture2D" uid="uid://ctmg80b4ncxns" path="res://sprite/UI/blank.png" id="4_77phg"]
+[ext_resource type="StyleBox" uid="uid://d2r7setx1ut2k" path="res://Resources/UI/Style Pieces/slider_filled.tres" id="4_ndpqa"]
+[ext_resource type="StyleBox" uid="uid://3xebb512jjn4" path="res://Resources/UI/Style Pieces/slider_box_empty.tres" id="5_77phg"]
+[ext_resource type="Texture2D" uid="uid://nbn7l3m1uvup" path="res://sprite/UI/panel-013.png" id="7_j5y86"]
+[ext_resource type="FontFile" uid="uid://hkj2g17p0umv" path="res://Resources/font/Kenney Pixel Square.ttf" id="8_oguxw"]
+[ext_resource type="FontFile" uid="uid://bt5y1bq10gurn" path="res://Resources/font/Kenney Mini Square.ttf" id="9_4j1kc"]
+[ext_resource type="StyleBox" uid="uid://bqmiqb6t7ttpg" path="res://Resources/UI/Style Pieces/transparent_panel.tres" id="9_j5y86"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oguxw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4j1kc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr67h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1nt3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j45os"]
+texture = ExtResource("7_j5y86")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+modulate_color = Color(1, 1, 1, 0.741176)
+
+[sub_resource type="ImageTexture" id="ImageTexture_oguxw"]
+
+[resource]
+Button/font_sizes/font_size = 28
+Button/fonts/font = ExtResource("1_7ojl3")
+Button/styles/hover = ExtResource("2_4fwi6")
+Button/styles/normal = ExtResource("2_7nmp3")
+CheckBox/colors/font_color = Color(0.87451, 0.87451, 0.87451, 0)
+CheckBox/colors/font_focus_color = Color(0.87451, 0.87451, 0.87451, 0)
+CheckBox/colors/font_hover_color = Color(0.87451, 0.87451, 0.87451, 0)
+CheckBox/colors/font_hover_pressed_color = Color(0.87451, 0.87451, 0.87451, 0)
+CheckBox/colors/font_pressed_color = Color(0.87451, 0.87451, 0.87451, 0)
+CheckBox/font_sizes/font_size = 1
+CheckBox/styles/focus = SubResource("StyleBoxFlat_oguxw")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_4j1kc")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_yr67h")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_f1nt3")
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = ExtResource("4_77phg")
+HSlider/icons/grabber_disabled = ExtResource("4_77phg")
+HSlider/icons/grabber_highlight = ExtResource("4_77phg")
+HSlider/icons/tick = ExtResource("4_77phg")
+HSlider/styles/grabber_area = ExtResource("4_ndpqa")
+HSlider/styles/grabber_area_highlight = ExtResource("5_77phg")
+HSlider/styles/slider = ExtResource("5_77phg")
+Label/fonts/font = ExtResource("1_7ojl3")
+MarginContainer/constants/margin_left = 25
+Panel/styles/panel = SubResource("StyleBoxTexture_j45os")
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.513726)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/font_sizes/bold_font_size = 32
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/bold_font = ExtResource("8_oguxw")
+RichTextLabel/fonts/normal_font = ExtResource("9_4j1kc")
+VScrollBar/icons/decrement = SubResource("ImageTexture_oguxw")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_oguxw")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_oguxw")
+VScrollBar/icons/increment = SubResource("ImageTexture_oguxw")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_oguxw")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_oguxw")
+VScrollBar/styles/grabber = ExtResource("9_j5y86")
+VScrollBar/styles/grabber_highlight = ExtResource("9_j5y86")
+VScrollBar/styles/grabber_pressed = ExtResource("9_j5y86")
+VScrollBar/styles/scroll = ExtResource("9_j5y86")
+VScrollBar/styles/scroll_focus = ExtResource("9_j5y86")

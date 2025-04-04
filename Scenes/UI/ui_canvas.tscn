@@ -1,0 +1,638 @@
+[gd_scene load_steps=14 format=3 uid="uid://bto8cqq2uwtli"]
+
+[ext_resource type="Theme" uid="uid://bmuslwg36aeuw" path="res://Resources/UI/UI_Theme.tres" id="1_22uyw"]
+[ext_resource type="Script" uid="uid://w2rqj70ilab" path="res://Scripts/UI/ui_canvas.gd" id="1_467xe"]
+[ext_resource type="Texture2D" uid="uid://dgqafvs4dtsje" path="res://textures/UI/circle.png" id="1_cehkl"]
+[ext_resource type="Script" uid="uid://52kyxcrogtck" path="res://Scripts/overload/label.gd" id="5_bnb2y"]
+[ext_resource type="StyleBox" uid="uid://bka3v7gup84op" path="res://Resources/UI/pause_Panel.tres" id="5_k0q2v"]
+[ext_resource type="PackedScene" uid="uid://b7qtqxgqsyv3w" path="res://Scenes/Overload/AudioPlayer.tscn" id="6_bde1r"]
+[ext_resource type="AudioStream" uid="uid://dk563nbdi6xcm" path="res://Audio/UI/pause.mp3" id="7_bc8xv"]
+[ext_resource type="AudioStream" uid="uid://sft4p1bis5ws" path="res://Audio/UI/unpause.mp3" id="8_bnb2y"]
+[ext_resource type="StyleBox" uid="uid://c7uvpu1tpyiil" path="res://Resources/UI/black_semi_trans_box.tres" id="9_7s1ye"]
+[ext_resource type="Material" uid="uid://3lp4i6e00mpq" path="res://Resources/Shaders/VHS/VHS_Sshader.tres" id="9_bc8xv"]
+[ext_resource type="Script" uid="uid://cxoelvfilfugy" path="res://Scripts/Notes/notes_manager.gd" id="10_jikax"]
+[ext_resource type="Texture2D" uid="uid://dobfs6och5ak0" path="res://textures/test_texture.png" id="11_bi65p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjgj6"]
+bg_color = Color(0, 0, 0, 0.376471)
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[node name="UI Canvas" type="CanvasLayer" node_paths=PackedStringArray("Interact_Text", "Dialog_Text", "button_texture", "dialog_button_texture")]
+script = ExtResource("1_467xe")
+Interact_Text = NodePath("Tooltip Panel/MarginContainer/Interact Text")
+Dialog_Text = NodePath("Dialog Panel/Dialog Text")
+button_texture = NodePath("Tooltip Panel/interact_button")
+dialog_button_texture = NodePath("Dialog Panel/interact_button")
+
+[node name="Reticle" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(8, 8)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cehkl")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Tooltip Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.45
+anchor_right = 0.9
+anchor_bottom = 0.55
+theme = ExtResource("1_22uyw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Interact Text" type="RichTextLabel" parent="Tooltip Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_22uyw")
+bbcode_enabled = true
+text = "this is some text"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_bnb2y")
+max_lines = 1
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="interact_button" type="TextureRect" parent="Tooltip Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.962
+anchor_top = 0.309
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 4
+
+[node name="Dialog Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_top = 0.66
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 2
+theme = ExtResource("1_22uyw")
+
+[node name="Dialog Text" type="RichTextLabel" parent="Dialog Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.275
+anchor_right = 0.95
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="interact_button" type="TextureRect" parent="Dialog Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.944
+anchor_top = 0.743
+anchor_right = 0.986
+anchor_bottom = 0.93
+stretch_mode = 4
+
+[node name="Dialog Name Panel" type="Panel" parent="Dialog Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.3
+anchor_bottom = 0.3
+offset_top = -20.0
+offset_bottom = -20.0
+theme = ExtResource("1_22uyw")
+
+[node name="Name" type="RichTextLabel" parent="Dialog Panel/Dialog Name Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_22uyw")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_bnb2y")
+max_lines = 1
+min_max = Vector2(16, 1024)
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="quit_button_panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.756
+anchor_right = 1.0
+anchor_bottom = 0.102
+
+[node name="HBoxContainer" type="HBoxContainer" parent="quit_button_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="quit_button_panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Quit Game"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="button" type="TextureRect" parent="quit_button_panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 4
+
+[node name="pause_button_panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.203
+anchor_bottom = 0.103
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pause_button_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="pause_button_panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Pause Game"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="button" type="TextureRect" parent="pause_button_panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 4
+
+[node name="Pause_Menu" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sjgj6")
+
+[node name="Paused_Panel" type="Panel" parent="Pause_Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.062
+anchor_right = 0.343
+anchor_bottom = 0.954
+theme_override_styles/panel = ExtResource("5_k0q2v")
+
+[node name="Inner_Panel" type="Panel" parent="Pause_Menu/Paused_Panel"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.85
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Menu/Paused_Panel/Inner_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("1_22uyw")
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Resume_button" type="Button" parent="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_22uyw")
+text = "Resume"
+
+[node name="options_button" type="Button" parent="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_22uyw")
+text = "Options"
+
+[node name="quit_button" type="Button" parent="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_22uyw")
+text = "Quit"
+
+[node name="Options_Panel" type="Panel" parent="Pause_Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.389
+anchor_top = 0.099
+anchor_right = 0.942
+anchor_bottom = 0.944
+theme_override_styles/panel = ExtResource("5_k0q2v")
+
+[node name="inner_panel" type="Panel" parent="Pause_Menu/Options_Panel"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Master_Volume" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Master_Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Master_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Master Volume"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Master_Volume_Slider" type="HSlider" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Master_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_22uyw")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="SFX_Volume" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/SFX_Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/SFX_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Sound Effect Volume"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Master_Volume_Slider" type="HSlider" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/SFX_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_22uyw")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Music_Volume" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Music_Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Music_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Music Volume"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Master_Volume_Slider" type="HSlider" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Music_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_22uyw")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Vocals_Volume" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Vocals_Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Vocals_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Vocal Volume"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Master_Volume_Slider" type="HSlider" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Vocals_Volume/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_22uyw")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Mouse_Sensitivity" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Mouse_Sensitivity"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Mouse_Sensitivity/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Mouse Sensitivity"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Master_Volume_Slider" type="HSlider" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Mouse_Sensitivity/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_22uyw")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Enable_Gamepad" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Enable_Gamepad"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Enable_Gamepad/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Enable Gamepad"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="enable_gamepad_check" type="CheckBox" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Enable_Gamepad/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Gamepad_Sensitivity" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Gamepad_Sensitivity"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Gamepad_Sensitivity/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "Gamepad Sensitivity"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="Master_Volume_Slider" type="HSlider" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Gamepad_Sensitivity/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_22uyw")
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Invert Y" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert Y"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert Y/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "invert Y look"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="invert_y_check" type="CheckBox" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert Y/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Invert X" type="Panel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert X"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert X/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_22uyw")
+text = "invert X look"
+horizontal_alignment = 2
+script = ExtResource("5_bnb2y")
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="invert_x_check" type="CheckBox" parent="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert X/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="pause_sound" parent="." instance=ExtResource("6_bde1r")]
+stream = ExtResource("7_bc8xv")
+
+[node name="unpause_sound" parent="." instance=ExtResource("6_bde1r")]
+stream = ExtResource("8_bnb2y")
+
+[node name="Notes_Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("9_7s1ye")
+script = ExtResource("10_jikax")
+is_active = true
+note_text_up = true
+
+[node name="CenterContainer" type="CenterContainer" parent="Notes_Panel"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Notes_Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="Notes_Panel/CenterContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("11_bi65p")
+stretch_mode = 4
+
+[node name="Text_Display_Panel" type="Panel" parent="Notes_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("9_7s1ye")
+
+[node name="MarginContainer" type="MarginContainer" parent="Notes_Panel/Text_Display_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="text_label" type="RichTextLabel" parent="Notes_Panel/Text_Display_Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_22uyw")
+text = "this is the text for a note as would be displayed if you wanted the text typed out rather than displayed on the note itself. it is meant to pop up and be closed."
+horizontal_alignment = 1
+script = ExtResource("5_bnb2y")
+max_lines = 40
+scale_ratio = 0.03
+min_max = Vector2(8, 512)
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("9_bc8xv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer/Resume_button" to="." method="resume"]
+[connection signal="pressed" from="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer/options_button" to="." method="toggle_options"]
+[connection signal="pressed" from="Pause_Menu/Paused_Panel/Inner_Panel/VBoxContainer/quit_button" to="." method="quit"]
+[connection signal="drag_ended" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Master_Volume/HBoxContainer/Master_Volume_Slider" to="." method="store_option_settings"]
+[connection signal="drag_ended" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/SFX_Volume/HBoxContainer/Master_Volume_Slider" to="." method="store_option_settings"]
+[connection signal="drag_ended" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Music_Volume/HBoxContainer/Master_Volume_Slider" to="." method="store_option_settings"]
+[connection signal="drag_ended" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Vocals_Volume/HBoxContainer/Master_Volume_Slider" to="." method="store_option_settings"]
+[connection signal="drag_ended" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Mouse_Sensitivity/HBoxContainer/Master_Volume_Slider" to="." method="store_option_settings"]
+[connection signal="pressed" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Enable_Gamepad/HBoxContainer/enable_gamepad_check" to="." method="store_option_settings"]
+[connection signal="drag_ended" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Gamepad_Sensitivity/HBoxContainer/Master_Volume_Slider" to="." method="store_option_settings"]
+[connection signal="pressed" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert Y/HBoxContainer/invert_y_check" to="." method="store_option_settings"]
+[connection signal="pressed" from="Pause_Menu/Options_Panel/inner_panel/VBoxContainer/Invert X/HBoxContainer/invert_x_check" to="." method="store_option_settings"]

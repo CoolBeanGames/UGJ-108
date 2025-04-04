@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd4yhdg36wmqb"]
+
+[ext_resource type="Texture2D" uid="uid://dgqafvs4dtsje" path="res://textures/UI/circle.png" id="1_1ly36"]
+
+[node name="reticle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0.541176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.115, 0.115)
+pivot_offset = Vector2(576, 324)
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_1ly36")

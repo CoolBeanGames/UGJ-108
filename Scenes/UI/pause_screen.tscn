@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://iakk31o6fskm"]
+
+[ext_resource type="Script" uid="uid://cvp3wm1t1w516" path="res://Scripts/UI/pause_screen_manager.gd" id="1_tqq60"]
+
+[node name="Pause_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqq60")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 0.552941)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

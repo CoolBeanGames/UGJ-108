@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b6tmfkb6ktvis"]
+
+[ext_resource type="FontFile" uid="uid://cpgavanyl17pj" path="res://Resources/font/timeburner-font/TimeburnerBold-peGR.ttf" id="1_wp8dm"]
+[ext_resource type="Texture2D" uid="uid://m5th754vn4p5" path="res://textures/UI/interact_panel.png" id="2_wp8dm"]
+[ext_resource type="FontFile" uid="uid://3iv0qguamcr7" path="res://Resources/font/timeburner-font/Timeburner-xJB8.ttf" id="3_4mfj2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5ua8"]
+texture = ExtResource("2_wp8dm")
+texture_margin_left = 54.0
+texture_margin_top = 42.0
+texture_margin_right = 54.0
+texture_margin_bottom = 44.0
+expand_margin_top = 25.0
+expand_margin_bottom = 23.0
+modulate_color = Color(1, 1, 1, 0.368627)
+
+[resource]
+Label/fonts/font = ExtResource("1_wp8dm")
+Panel/styles/panel = SubResource("StyleBoxTexture_q5ua8")
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.513726)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/font_sizes/bold_font_size = 17
+RichTextLabel/font_sizes/normal_font_size = 20
+RichTextLabel/fonts/bold_font = ExtResource("1_wp8dm")
+RichTextLabel/fonts/normal_font = ExtResource("3_4mfj2")

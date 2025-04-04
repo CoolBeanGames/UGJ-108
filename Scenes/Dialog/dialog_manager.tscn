@@ -1,0 +1,105 @@
+[gd_scene load_steps=18 format=3 uid="uid://0dfqdwuaur8"]
+
+[ext_resource type="Script" uid="uid://ck4hvhdq31agg" path="res://Scripts/dialog_system/dialog_manager.gd" id="1_ppev8"]
+[ext_resource type="Theme" uid="uid://bmuslwg36aeuw" path="res://Resources/UI/UI_Theme.tres" id="2_oy3ux"]
+[ext_resource type="Script" uid="uid://djdr4bnygx40b" path="res://Scripts/dialog_system/state_machine/d_idle_state.gd" id="3_4bycl"]
+[ext_resource type="Script" uid="uid://52kyxcrogtck" path="res://Scripts/overload/label.gd" id="3_xu2c4"]
+[ext_resource type="Script" uid="uid://citu4irareq6w" path="res://Scripts/dialog_system/state_machine/d_load_line_state.gd" id="4_qy3hs"]
+[ext_resource type="Animation" uid="uid://g8w4elkwq1ly" path="res://Resources/UI/Animations/Dialog/conversation_close.res" id="4_vke7v"]
+[ext_resource type="Script" uid="uid://xdqjhekm10g1" path="res://Scripts/dialog_system/state_machine/d_play_line_state.gd" id="5_rn4oy"]
+[ext_resource type="Script" uid="uid://dhfty3lrotoet" path="res://Scripts/dialog_system/state_machine/d_cleanup_state.gd" id="6_3fckt"]
+[ext_resource type="AudioStream" uid="uid://bb5w3entk2sr6" path="res://Audio/sound_effects/tick_sound.wav" id="9_ur1oe"]
+[ext_resource type="PackedScene" uid="uid://b7qtqxgqsyv3w" path="res://Scenes/Overload/AudioPlayer.tscn" id="10_7kbem"]
+[ext_resource type="Script" uid="uid://b5aev0a7vyvw7" path="res://Scenes/Overload/audio_player.gd" id="10_oy3ux"]
+[ext_resource type="AudioStream" uid="uid://ckl4n8aie4w6c" path="res://Audio/UI/confirm.mp3" id="11_oy3ux"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kekbd"]
+
+[sub_resource type="Animation" id="Animation_kekbd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 600)]
+}
+
+[sub_resource type="Animation" id="Animation_552v8"]
+resource_name = "conversation_open"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 0.450625),
+"update": 0,
+"values": [Vector2(0, 581.44), Vector2(0, 324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w54b1"]
+_data = {
+&"RESET": SubResource("Animation_kekbd"),
+&"conversation_close": ExtResource("4_vke7v"),
+&"conversation_open": SubResource("Animation_552v8")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_ni6yk"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("conversation", "Panel", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "theme", "theme_override_styles/panel", "Panel", "Panel", "layout_mode", "anchors_preset", "anchor_top", "anchor_right", "anchor_bottom", "offset_top", "offset_bottom", "theme", "RichTextLabel", "RichTextLabel", "layout_mode", "anchors_preset", "anchor_top", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "theme", "text", "fit_content", "horizontal_alignment", "script", "metadata/_custom_type_script", "AnimationPlayer", "AnimationPlayer", "libraries"),
+"node_count": 4,
+"node_paths": [NodePath("."), NodePath("./Panel"), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 7, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 0, 1073741824, 0, 10, 9, -1, 8, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 18, 14, 0, 1073741825, 0, 20, 19, -1, 13, 21, 15, 22, 16, 23, 17, 24, 18, 25, 19, 26, 20, 27, 21, 28, 22, 29, 23, 30, 24, 31, 25, 32, 26, 33, 27, 0, 1073741826, 0, 35, 34, -1, 1, 36, 28, 0),
+"variants": [15, 1.0, 1.0, 2, 2, ExtResource("2_oy3ux"), SubResource("StyleBoxTexture_kekbd"), 1, -1, 0.5, 1.0, 1.0, 165.497, 165.497, ExtResource("2_oy3ux"), 1, -1, 0.5, 1.0, 1.0, 2, 2, ExtResource("2_oy3ux"), "this is some dialog for my game that i am working on, dialog will be displayed with this. I will however need to setup the UI", true, 1, ExtResource("3_xu2c4"), "uid://52kyxcrogtck", {
+&"": SubResource("AnimationLibrary_w54b1")
+}],
+"version": 3
+}
+
+[node name="Dialog_Manager" type="Node" node_paths=PackedStringArray("idle", "load_line", "play_line", "cleanup", "audio_advance_sound", "tick_sound_player")]
+script = ExtResource("1_ppev8")
+idle = NodePath("State_Machine/idle")
+load_line = NodePath("State_Machine/load")
+play_line = NodePath("State_Machine/play")
+cleanup = NodePath("State_Machine/cleanup")
+audio_advance_sound = NodePath("AudioPlayer")
+tick_sound_player = NodePath("tick_sound_player")
+dialog_UI_Scene = SubResource("PackedScene_ni6yk")
+
+[node name="State_Machine" type="Node" parent="."]
+
+[node name="idle" type="Node" parent="State_Machine"]
+editor_description = "the idle state for the state machine"
+script = ExtResource("3_4bycl")
+
+[node name="load" type="Node" parent="State_Machine"]
+editor_description = "the load state for the state machine"
+script = ExtResource("4_qy3hs")
+
+[node name="play" type="Node" parent="State_Machine"]
+editor_description = "the play state for the state machine"
+script = ExtResource("5_rn4oy")
+
+[node name="cleanup" type="Node" parent="State_Machine"]
+editor_description = "the cleanup state for the state machine"
+script = ExtResource("6_3fckt")
+
+[node name="AudioPlayer" parent="." instance=ExtResource("10_7kbem")]
+stream = ExtResource("11_oy3ux")
+
+[node name="tick_sound_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ur1oe")
+script = ExtResource("10_oy3ux")
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"
