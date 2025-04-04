@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl1wbsb30jupi"]
+
+[ext_resource type="Script" uid="uid://ccecc5l6eg72j" path="res://Scripts/Player/player_controller.gd" id="1_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://bkhc0sgwu74ql" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/character-female-c.glb" id="1_v0iea"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cn3v0lt8vxgp0" path="res://Resources/Animation_Trees/player_state_machine.tres" id="2_cvnsp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+radius = 0.148769
+height = 0.408184
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_tree", "player_model")]
+script = ExtResource("1_6t5aa")
+anim_tree = NodePath("AnimationTree")
+player_model = NodePath("player_body")
+
+[node name="player_body" parent="." instance=ExtResource("1_v0iea")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, -0.0999846, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10439, 0)
+shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.679441, 0.73373, 0, -0.73373, 0.679441, 0, 2.884, 2.112)
+fov = 36.2
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+root_node = NodePath("../player_body")
+tree_root = ExtResource("2_cvnsp")
+anim_player = NodePath("../player_body/AnimationPlayer")
+parameters/conditions/notWalk = false
+parameters/conditions/walk = true
+
+[editable path="player_body"]

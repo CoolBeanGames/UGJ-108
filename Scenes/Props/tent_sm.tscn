@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://eljbjg7tis6"]
+
+[ext_resource type="PackedScene" uid="uid://4tgb6wfvyygo" path="res://Kenny/Model Kits/kenney_survival-kit/Models/GLB format/tent-canvas.glb" id="1_w4iep"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xuqmw"]
+size = Vector3(0.449219, 0.398285, 0.457153)
+
+[node name="tent" type="Node3D"]
+
+[node name="tent-canvas2" parent="." instance=ExtResource("1_w4iep")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.0155374, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00878906, 0.172348, 0.00836182)
+shape = SubResource("BoxShape3D_xuqmw")

@@ -12,7 +12,7 @@ func _ready() -> void:
 	root_scene = get_tree().root.get_child(2) #adjust this for auto_loads...
 	loading_screen = load("res://Scenes/UI/loading_scene.tscn")
 	#code for testing only
-	load_scene(load("res://Scenes/v1_advanced_tests.tscn"),true,load("res://Scenes/UI/ui_canvas.tscn"))
+	#load_scene(load("res://Scenes/v1_advanced_tests.tscn"),true,load("res://Scenes/UI/ui_canvas.tscn"))
 
 #removes the current scene
 func clear_scene():

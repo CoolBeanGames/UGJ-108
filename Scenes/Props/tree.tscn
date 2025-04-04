@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbqbvbxscf8fm"]
+
+[ext_resource type="PackedScene" uid="uid://bcnhpbf7gbn8" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/tree_default.glb" id="1_dn6yr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0c77"]
+radius = 0.248725
+height = 1.05268
+
+[node name="tree" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50494, 0)
+shape = SubResource("CapsuleShape3D_r0c77")
+
+[node name="tree_default2" parent="." instance=ExtResource("1_dn6yr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0552665, 0)

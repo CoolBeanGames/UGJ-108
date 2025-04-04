@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu1t2b38b15vx"]
+
+[ext_resource type="PackedScene" uid="uid://c7fstbjwr7aiq" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/tent_detailedClosed.glb" id="1_h14is"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gi0gp"]
+size = Vector3(0.440186, 0.386841, 0.484131)
+
+[node name="tent_lg" type="Node3D"]
+
+[node name="tent_detailedClosed2" parent="." instance=ExtResource("1_h14is")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.0146027, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00280762, 0.154358, -0.00915527)
+shape = SubResource("BoxShape3D_gi0gp")

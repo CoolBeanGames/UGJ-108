@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://v3b0tcqjig4y"]
+
+[ext_resource type="PackedScene" uid="uid://dvpms3dh8ro3q" path="res://Kenny/Model Kits/kenney_survival-kit/Models/GLB format/rock-a.glb" id="1_iwccf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_80d7j"]
+radius = 0.243014
+height = 0.74588
+
+[node name="Rock" type="Node3D"]
+
+[node name="rock-a2" parent="." instance=ExtResource("1_iwccf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719293, -0.00348625, 0.779688)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rock-a2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rock-a2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0431514, 0, 0)
+shape = SubResource("CapsuleShape3D_80d7j")

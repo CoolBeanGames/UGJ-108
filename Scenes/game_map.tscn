@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=3 uid="uid://b5jqbvavobe4"]
+
+[ext_resource type="PackedScene" uid="uid://dl1wbsb30jupi" path="res://Scenes/player.tscn" id="1_d8w4w"]
+[ext_resource type="PackedScene" uid="uid://b2ca3hv4r7yks" path="res://Scenes/World/world_ground.tscn" id="1_jbw0w"]
+[ext_resource type="Script" uid="uid://chpa70rf1mw4i" path="res://Scripts/UI/fps_tracker.gd" id="2_8wm8v"]
+[ext_resource type="Script" uid="uid://52kyxcrogtck" path="res://Scripts/overload/label.gd" id="3_c4nuu"]
+[ext_resource type="PackedScene" uid="uid://cnpn0ormgxgyg" path="res://Scenes/NPCs/npc.tscn" id="5_3qyi3"]
+[ext_resource type="PackedScene" uid="uid://bbqbvbxscf8fm" path="res://Scenes/Props/tree.tscn" id="6_nuwfo"]
+[ext_resource type="PackedScene" uid="uid://cl0433a0rlere" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/path_wood.glb" id="6_qy8qd"]
+[ext_resource type="PackedScene" uid="uid://bdnkaxrk5ihej" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/path_woodCorner.glb" id="7_e8upy"]
+[ext_resource type="PackedScene" uid="uid://cu1t2b38b15vx" path="res://Scenes/Props/tent_lg.tscn" id="7_vs6hg"]
+[ext_resource type="PackedScene" uid="uid://eljbjg7tis6" path="res://Scenes/Props/tent_sm.tscn" id="8_v8ky0"]
+[ext_resource type="PackedScene" uid="uid://v3b0tcqjig4y" path="res://Scenes/Props/rock.tscn" id="9_vs6hg"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_d8w4w"]
+vertices = PackedVector3Array(-60, 0.400015, -45, -60, 0.400015, 74, 59, 0.400015, 74, 59, 0.400015, -45)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qyi3"]
+size = Vector3(119.287, 7.98132, 118.457)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8wm8v"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_c4nuu"]
+sky_material = SubResource("ProceduralSkyMaterial_8wm8v")
+
+[sub_resource type="Environment" id="Environment_d8w4w"]
+background_mode = 2
+sky = SubResource("Sky_c4nuu")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_d8w4w")
+
+[node name="world_ground" parent="." groups=["navigation_mesh_source_group"] instance=ExtResource("1_jbw0w")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="world_ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world_ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.447632, -3.99225, 14.5016)
+shape = SubResource("BoxShape3D_3qyi3")
+
+[node name="game_map" type="Node3D" parent="."]
+
+[node name="Player" parent="game_map" instance=ExtResource("1_d8w4w")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+walk_speed = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="game_map"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="game_map"]
+environment = SubResource("Environment_d8w4w")
+
+[node name="FPS" type="CanvasLayer" parent="game_map" node_paths=PackedStringArray("txt")]
+script = ExtResource("2_8wm8v")
+txt = NodePath("Panel/text_label")
+
+[node name="Panel" type="Panel" parent="game_map/FPS"]
+anchors_preset = -1
+anchor_right = 0.136
+anchor_bottom = 0.108
+
+[node name="text_label" type="RichTextLabel" parent="game_map/FPS/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_c4nuu")
+max_lines = 1
+scale_ratio = 0.2
+metadata/_custom_type_script = "uid://52kyxcrogtck"
+
+[node name="NPC" parent="game_map" instance=ExtResource("5_3qyi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.821, 0, 1.442)
+
+[node name="paths" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613511, 0)
+
+[node name="path_wood2" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.0613511, 0)
+
+[node name="path_wood6" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.52764, 0.0613511, -0.519802)
+
+[node name="path_wood7" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.07502, 0.0613511, -0.519802)
+
+[node name="path_wood8" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.63324, 0.0613511, -0.519802)
+
+[node name="path_wood9" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.18225, 0.059291, -0.521159)
+
+[node name="path_wood3" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.0613511, 0.532883)
+
+[node name="path_wood4" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.0613511, 1.08704)
+
+[node name="path_wood5" parent="paths" instance=ExtResource("6_qy8qd")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.0613511, 1.66202)
+
+[node name="path_woodCorner2" parent="paths" instance=ExtResource("7_e8upy")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.0360615, 0.0440314, -0.522438)
+
+[node name="props" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613511, 0)
+
+[node name="tree" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8642, 0.04841, 1.44992)
+
+[node name="tree2" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45629, 0.02341, -2.90806)
+
+[node name="tree3" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.864242, 0.02341, -3.26401)
+
+[node name="tree4" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29934, 0.02341, -0.950423)
+
+[node name="tree5" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17509, 0.02341, 6.51626)
+
+[node name="tree6" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21689, 0.02341, -6.8288)
+
+[node name="tree7" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43306, 0.02341, -4.70571)
+
+[node name="tree8" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.50149, 0.02341, -1.23567)
+
+[node name="tree9" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00645, 0.02341, 8.39546)
+
+[node name="tent_lg" parent="props" instance=ExtResource("7_vs6hg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25927, 0.0583086, -0.0754663)
+
+[node name="tent" parent="props" instance=ExtResource("8_v8ky0")]
+transform = Transform3D(0.787376, 0, -0.616473, 0, 1, 0, 0.616473, 0, 0.787376, -2.48039, 0.008526, 1.33277)
+
+[node name="tree10" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.790559, 0.0786765, 2.34608)
+
+[node name="tree11" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86029, 0.0786765, 1.39102)
+
+[node name="Rock" parent="props" instance=ExtResource("9_vs6hg")]
+
+[node name="Rock2" parent="props" instance=ExtResource("9_vs6hg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61246, -0.00734641, 2.29516)
+
+[node name="tree12" parent="props" instance=ExtResource("6_nuwfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.836271, 0.0775088, -0.0353279)
