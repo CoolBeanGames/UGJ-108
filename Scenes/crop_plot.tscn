@@ -1,0 +1,87 @@
+[gd_scene load_steps=15 format=3 uid="uid://c2ympu0x45uro"]
+
+[ext_resource type="Script" uid="uid://b8ptx1ag61qsi" path="res://Scripts/crop_plot.gd" id="1_1tbt6"]
+[ext_resource type="PackedScene" uid="uid://btkrdhjxlhbs4" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageA.glb" id="1_enl0n"]
+[ext_resource type="PackedScene" uid="uid://ndcvvw285m00" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageB.glb" id="2_1tbt6"]
+[ext_resource type="PackedScene" uid="uid://0wxe0oa5qu3h" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageC.glb" id="3_e0qll"]
+[ext_resource type="PackedScene" uid="uid://b03p5x8om447h" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageD.glb" id="4_gs728"]
+[ext_resource type="AudioStream" uid="uid://bqgxe4f07e7pv" path="res://Audio/zapsplat_cartoon_pop_wet_could_be_bubble_or_liquid_001_80362.mp3" id="6_hmfi8"]
+[ext_resource type="Script" uid="uid://b5aev0a7vyvw7" path="res://Scenes/Overload/audio_player.gd" id="7_y7b4h"]
+[ext_resource type="AudioStream" uid="uid://bbwvsm11thj57" path="res://Audio/zapsplat_nature_water_movement_surface_splash_small_003_112809.mp3" id="8_dkqxx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e0qll"]
+size = Vector3(0.354492, 0.589111, 0.294037)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tbt6"]
+albedo_color = Color(1.92523e-07, 0.369061, 0.171311, 1)
+emission_enabled = true
+emission = Color(0.185543, 0.278878, 1, 1)
+disable_receive_shadows = true
+
+[sub_resource type="Curve" id="Curve_e0qll"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.189095, 0.0905875), 0.0, 0.0, 0, 0, Vector2(0.592765, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gs728"]
+curve = SubResource("Curve_e0qll")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hmfi8"]
+emission_shape_scale = Vector3(0.1, 1, 0.1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -5, 0)
+scale_min = 0.01
+scale_curve = SubResource("CurveTexture_gs728")
+
+[sub_resource type="SphereMesh" id="SphereMesh_y7b4h"]
+
+[node name="crop_plot" type="Node3D" node_paths=PackedStringArray("crop_stages", "particles", "light", "plant_sound", "water_soudn") groups=["raycast_target"]]
+script = ExtResource("1_1tbt6")
+crop_stages = [NodePath("crops_cornStageA2"), NodePath("crops_cornStageB2"), NodePath("crops_cornStageC2"), NodePath("crops_cornStageD2")]
+particles = NodePath("GPUParticles3D")
+light = NodePath("OmniLight3D")
+plant_sound = NodePath("plant_sound")
+water_soudn = NodePath("water_sound")
+
+[node name="crops_cornStageA2" parent="." instance=ExtResource("1_enl0n")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="crops_cornStageB2" parent="." instance=ExtResource("2_1tbt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="crops_cornStageC2" parent="." instance=ExtResource("3_e0qll")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="crops_cornStageD2" parent="." instance=ExtResource("4_gs728")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="crop_body" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="crop_shape" type="CollisionShape3D" parent="crop_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0161133, 0.295776, 0.0103607)
+shape = SubResource("BoxShape3D_e0qll")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250058, 0)
+material_overlay = SubResource("StandardMaterial3D_1tbt6")
+amount = 110
+process_material = SubResource("ParticleProcessMaterial_hmfi8")
+draw_pass_1 = SubResource("SphereMesh_y7b4h")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315701, 0)
+light_color = Color(0.330823, 0.595039, 1.92523e-07, 1)
+light_energy = 2.0
+omni_range = 0.63324
+
+[node name="plant_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hmfi8")
+script = ExtResource("7_y7b4h")
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"
+
+[node name="water_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_dkqxx")
+script = ExtResource("7_y7b4h")
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"

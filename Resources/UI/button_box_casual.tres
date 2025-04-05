@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://fbtrk2ewf7n3"]
+
+[ext_resource type="Texture2D" uid="uid://mut1d66iw4uq" path="res://Kenny/Texture Kits/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="1_sq1qx"]
+
+[resource]
+texture = ExtResource("1_sq1qx")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0

@@ -3,10 +3,10 @@ class_name interactive_object
 
 @export var interact_text : String = " "
 
-func start_looking(_target : Node):
+func start_looking(_target : Node = null):
 	Autoload.references["ui_root"].update_interact(interact_text)
 
-func end_looking(_target : Node):
+func end_looking(_target : Node = null):
 	Autoload.references["ui_root"].hide_interact()
 
 func action():

@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl1wbsb30jupi"]
+[gd_scene load_steps=6 format=3 uid="uid://dl1wbsb30jupi"]
 
 [ext_resource type="Script" uid="uid://ccecc5l6eg72j" path="res://Scripts/Player/player_controller.gd" id="1_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://bkhc0sgwu74ql" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/character-female-c.glb" id="1_v0iea"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cn3v0lt8vxgp0" path="res://Resources/Animation_Trees/player_state_machine.tres" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://dcgbyp8a8nyep" path="res://Scripts/player_raycaster.gd" id="3_vgqql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 radius = 0.148769
 height = 0.408184
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_tree", "player_model")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_tree", "player_model") groups=["player"]]
 script = ExtResource("1_6t5aa")
 anim_tree = NodePath("AnimationTree")
 player_model = NodePath("player_body")
@@ -16,7 +17,17 @@ player_model = NodePath("player_body")
 [node name="player_body" parent="." instance=ExtResource("1_v0iea")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, -0.0999846, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Skeleton3D" parent="player_body/character-female-c" index="0"]
+bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
+bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+
+[node name="player_raycast" type="RayCast3D" parent="player_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3672, 0.602333)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("3_vgqql")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10439, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
 

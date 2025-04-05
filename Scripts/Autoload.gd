@@ -7,6 +7,7 @@ class_name auto_load
 @export var game_paused : bool = false
 @export var current_input_mode : INPUT_MODE
 @export var debug_mode : bool = true
+@export var day : int = 0
 var savedata_path : String
 var settings_path : String
 

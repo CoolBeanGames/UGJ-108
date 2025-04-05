@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6be2an5kkv6c"
-path.s3tc="res://.godot/imported/colormap.png-c408b79e82b907b2c6a83df65480d705.s3tc.ctex"
+path.etc2="res://.godot/imported/colormap.png-c408b79e82b907b2c6a83df65480d705.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Kenny/Model Kits/kenney_survival-kit/Models/GLB format/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-c408b79e82b907b2c6a83df65480d705.s3tc.ctex"]
+dest_files=["res://.godot/imported/colormap.png-c408b79e82b907b2c6a83df65480d705.etc2.ctex"]
 
 [params]
 
