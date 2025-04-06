@@ -47,7 +47,7 @@ func _ready() -> void:
 	current_state.enter_state()
 
 func _process(delta: float) -> void:
-	if not Autoload.game_paused:
+	if not Autoload.game_paused and current_state!=null:
 		current_state.update(delta)
 
 func start_dialog(convo : conversation):

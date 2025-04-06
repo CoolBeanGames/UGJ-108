@@ -1,30 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl1wbsb30jupi"]
+[gd_scene load_steps=7 format=3 uid="uid://dl1wbsb30jupi"]
 
 [ext_resource type="Script" uid="uid://ccecc5l6eg72j" path="res://Scripts/Player/player_controller.gd" id="1_6t5aa"]
-[ext_resource type="PackedScene" uid="uid://bkhc0sgwu74ql" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/character-female-c.glb" id="1_v0iea"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cn3v0lt8vxgp0" path="res://Resources/Animation_Trees/player_state_machine.tres" id="2_cvnsp"]
-[ext_resource type="Script" uid="uid://dcgbyp8a8nyep" path="res://Scripts/player_raycaster.gd" id="3_vgqql"]
+[ext_resource type="PackedScene" uid="uid://ibtisd4sufcs" path="res://Scenes/Model_Scenes/player_model.tscn" id="2_vgqql"]
+[ext_resource type="Script" uid="uid://dcgbyp8a8nyep" path="res://Scripts/Player/player_raycaster.gd" id="3_vgqql"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bxtme1illsri5" path="res://Resources/Animation_Trees/state_machine_base.tres" id="4_vgqql"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vgqql"]
+height = 0.25
+radius = 0.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 radius = 0.148769
 height = 0.408184
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_tree", "player_model") groups=["player"]]
+collision_mask = 12
 script = ExtResource("1_6t5aa")
 anim_tree = NodePath("AnimationTree")
-player_model = NodePath("player_body")
+player_model = NodePath("player_model")
 
-[node name="player_body" parent="." instance=ExtResource("1_v0iea")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, -0.0999846, 0)
+[node name="player_model" parent="." instance=ExtResource("2_vgqql")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, -0.106382, 0)
 
-[node name="Skeleton3D" parent="player_body/character-female-c" index="0"]
-bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
-bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+[node name="damage_area" parent="player_model/character-male-f/Skeleton3D/BoneAttachment3D/tool-pickaxe2" index="1"]
+collision_layer = 32
+collision_mask = 4
 
-[node name="player_raycast" type="RayCast3D" parent="player_body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3672, 0.602333)
+[node name="ShapeCast3D" type="ShapeCast3D" parent="player_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681585, 0.598689)
+shape = SubResource("CylinderShape3D_vgqql")
+target_position = Vector3(0, -0.42, 0)
+max_results = 1
 collision_mask = 2
-hit_from_inside = true
 script = ExtResource("3_vgqql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["player"]]
@@ -37,10 +44,20 @@ fov = 36.2
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
-root_node = NodePath("../player_body")
-tree_root = ExtResource("2_cvnsp")
-anim_player = NodePath("../player_body/AnimationPlayer")
+root_node = NodePath("../player_model")
+tree_root = ExtResource("4_vgqql")
+anim_player = NodePath("../player_model/AnimationPlayer")
+parameters/conditions/attack = false
+parameters/conditions/dead = false
 parameters/conditions/notWalk = false
+parameters/conditions/not_attack = false
 parameters/conditions/walk = true
 
-[editable path="player_body"]
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 0.417
+
+[connection signal="body_entered" from="player_model/character-male-f/Skeleton3D/BoneAttachment3D/tool-pickaxe2/damage_area" to="." method="_on_attack_enter"]
+[connection signal="body_exited" from="player_model/character-male-f/Skeleton3D/BoneAttachment3D/tool-pickaxe2/damage_area" to="." method="_on_attack_exit"]
+[connection signal="timeout" from="attack_timer" to="." method="end_attack"]
+
+[editable path="player_model"]

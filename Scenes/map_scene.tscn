@@ -1,5 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cokb6mus116w1"]
+[gd_scene load_steps=4 format=3 uid="uid://cokb6mus116w1"]
 
 [ext_resource type="PackedScene" uid="uid://blerxswu7cght" path="res://models/108Map.glb" id="1_ppkpg"]
+[ext_resource type="PackedScene" uid="uid://brbe5c40x3j02" path="res://Scenes/shipping_box.tscn" id="2_wsgkf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppkpg"]
+size = Vector3(1.08496, 1, 1.44507)
 
 [node name="108Map" instance=ExtResource("1_ppkpg")]
+
+[node name="map" parent="." index="5"]
+collision_layer = 8
+collision_mask = 5
+
+[node name="bridge" parent="." index="6"]
+collision_layer = 8
+collision_mask = 5
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0924, 1.46433, -6.0517)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0424805, 0, 0.0533447)
+shape = SubResource("BoxShape3D_ppkpg")
+
+[node name="shipping_box" parent="." index="8" instance=ExtResource("2_wsgkf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.9543, -0.0500003, -9.4387)

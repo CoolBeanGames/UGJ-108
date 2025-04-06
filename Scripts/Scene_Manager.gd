@@ -19,6 +19,7 @@ func clear_scene():
 	loaded_scene.queue_free()
 
 func next_day(): ##this will need updated to show the transition
+	Autoload.points_on_interest.clear()
 	load_scene(load("res://Scenes/game_map.tscn"),true,load("res://Scenes/UI/ui_canvas.tscn"))
 	Autoload.day += 1
 

@@ -8,10 +8,10 @@
 [ext_resource type="Animation" uid="uid://g8w4elkwq1ly" path="res://Resources/UI/Animations/Dialog/conversation_close.res" id="4_vke7v"]
 [ext_resource type="Script" uid="uid://xdqjhekm10g1" path="res://Scripts/dialog_system/state_machine/d_play_line_state.gd" id="5_rn4oy"]
 [ext_resource type="Script" uid="uid://dhfty3lrotoet" path="res://Scripts/dialog_system/state_machine/d_cleanup_state.gd" id="6_3fckt"]
-[ext_resource type="AudioStream" uid="uid://bb5w3entk2sr6" path="res://Audio/sound_effects/tick_sound.wav" id="9_ur1oe"]
 [ext_resource type="PackedScene" uid="uid://b7qtqxgqsyv3w" path="res://Scenes/Overload/AudioPlayer.tscn" id="10_7kbem"]
 [ext_resource type="Script" uid="uid://b5aev0a7vyvw7" path="res://Scenes/Overload/audio_player.gd" id="10_oy3ux"]
 [ext_resource type="AudioStream" uid="uid://ckl4n8aie4w6c" path="res://Audio/UI/confirm.mp3" id="11_oy3ux"]
+[ext_resource type="AudioStream" uid="uid://dvp8rmhewa2xe" path="res://Audio/gibber.wav" id="11_xu2c4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kekbd"]
 
@@ -100,6 +100,6 @@ script = ExtResource("6_3fckt")
 stream = ExtResource("11_oy3ux")
 
 [node name="tick_sound_player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_ur1oe")
+stream = ExtResource("11_xu2c4")
 script = ExtResource("10_oy3ux")
 metadata/_custom_type_script = "uid://b5aev0a7vyvw7"

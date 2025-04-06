@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1tcg2ddl368e"]
+
+[ext_resource type="PackedScene" uid="uid://cnpn0ormgxgyg" path="res://Scenes/NPCs/npc.tscn" id="1_r8p0f"]
+[ext_resource type="Script" uid="uid://c0blvve3hrcpm" path="res://Scripts/NPC/james.gd" id="2_7xwpi"]
+[ext_resource type="PackedScene" uid="uid://biq815dus78wn" path="res://Scenes/Model_Scenes/james_model.tscn" id="3_7xwpi"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bikqjbdgxorqf" path="res://Resources/Animation_Trees/james_animation.tres" id="4_o1dtv"]
+
+[node name="NPC" node_paths=PackedStringArray("model") instance=ExtResource("1_r8p0f")]
+script = ExtResource("2_7xwpi")
+npc_name = "james"
+model = NodePath("james")
+
+[node name="james" parent="." index="0" instance=ExtResource("3_7xwpi")]
+
+[node name="Skeleton3D" parent="james/character-male-e" index="0"]
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/5/rotation = Quaternion(0, 0, 0, 1)
+
+[node name="AnimationTree" parent="." index="3"]
+root_node = NodePath("../james")
+tree_root = ExtResource("4_o1dtv")
+anim_player = NodePath("../james/AnimationPlayer")
+
+[editable path="james"]

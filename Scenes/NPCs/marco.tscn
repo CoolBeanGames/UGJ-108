@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw3yd87oii1x6"]
+
+[ext_resource type="PackedScene" uid="uid://cnpn0ormgxgyg" path="res://Scenes/NPCs/npc.tscn" id="1_2x734"]
+[ext_resource type="Script" uid="uid://cu1xj71a0khed" path="res://Scripts/NPC/marco.gd" id="2_8x7jr"]
+[ext_resource type="PackedScene" uid="uid://ctwxkm6gj2asj" path="res://Scenes/Model_Scenes/marco_model.tscn" id="3_8x7jr"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://msh71too2fu2" path="res://Resources/Animation_Trees/marco_animation.tres" id="4_w6o7h"]
+
+[node name="Marco" node_paths=PackedStringArray("model") instance=ExtResource("1_2x734")]
+script = ExtResource("2_8x7jr")
+model = NodePath("marco")
+
+[node name="marco" parent="." index="0" instance=ExtResource("3_8x7jr")]
+
+[node name="AnimationTree" parent="." index="3"]
+root_node = NodePath("../marco")
+tree_root = ExtResource("4_w6o7h")
+anim_player = NodePath("../marco/AnimationPlayer")
+
+[editable path="marco"]

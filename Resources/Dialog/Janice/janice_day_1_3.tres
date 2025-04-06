@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="conversation" load_steps=7 format=3 uid="uid://car1flali8lak"]
+
+[ext_resource type="Script" uid="uid://ddxpxhi4sggxi" path="res://Scripts/dialog_system/resources/dialog_line.gd" id="1_u1i05"]
+[ext_resource type="Script" uid="uid://b548iklm65l3r" path="res://Scripts/dialog_system/resources/conversation.gd" id="2_8t8pp"]
+
+[sub_resource type="Resource" id="Resource_aigge"]
+script = ExtResource("1_u1i05")
+speaker = "Janice"
+line = "Have you figured out where to get seeds yet?"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_l1vcw"]
+script = ExtResource("1_u1i05")
+speaker = "Janice"
+line = "Whenever you harvest a plant, you'll automatically gain +1 seed!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_w8g5j"]
+script = ExtResource("1_u1i05")
+speaker = "Janice"
+line = "Maximize those resources baby!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_rqpwm"]
+script = ExtResource("1_u1i05")
+speaker = "Janice"
+line = "erm... sorry"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[resource]
+script = ExtResource("2_8t8pp")
+lines = Array[ExtResource("1_u1i05")]([SubResource("Resource_aigge"), SubResource("Resource_l1vcw"), SubResource("Resource_w8g5j"), SubResource("Resource_rqpwm")])
+typerwriter_effect = true
+typewriter_speed = 1.0
+allow_gameplay_during = false
+next_on_tween_finish = false
+metadata/_custom_type_script = "uid://b548iklm65l3r"

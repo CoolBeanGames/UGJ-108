@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="conversation" load_steps=7 format=3 uid="uid://cpr7vcf57026f"]
+
+[ext_resource type="Script" uid="uid://ddxpxhi4sggxi" path="res://Scripts/dialog_system/resources/dialog_line.gd" id="1_ymhps"]
+[ext_resource type="Script" uid="uid://b548iklm65l3r" path="res://Scripts/dialog_system/resources/conversation.gd" id="2_h72kp"]
+
+[sub_resource type="Resource" id="Resource_xadov"]
+script = ExtResource("1_ymhps")
+speaker = "James"
+line = "Make sure you sell your crops and gather up the  coin"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_pudqr"]
+script = ExtResource("1_ymhps")
+speaker = "James"
+line = "that way next week you can buy a bunch of upgrades"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_nd647"]
+script = ExtResource("1_ymhps")
+speaker = "James "
+line = "yes..."
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_03poy"]
+script = ExtResource("1_ymhps")
+speaker = "James"
+line = "next week..."
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[resource]
+script = ExtResource("2_h72kp")
+lines = Array[ExtResource("1_ymhps")]([SubResource("Resource_xadov"), SubResource("Resource_pudqr"), SubResource("Resource_nd647"), SubResource("Resource_03poy")])
+typerwriter_effect = true
+typewriter_speed = 1.0
+allow_gameplay_during = false
+next_on_tween_finish = false
+metadata/_custom_type_script = "uid://b548iklm65l3r"

@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="conversation" load_steps=6 format=3 uid="uid://p6qqk144tnxy"]
+
+[ext_resource type="Script" uid="uid://ddxpxhi4sggxi" path="res://Scripts/dialog_system/resources/dialog_line.gd" id="1_0la4q"]
+[ext_resource type="Script" uid="uid://b548iklm65l3r" path="res://Scripts/dialog_system/resources/conversation.gd" id="2_csbk6"]
+
+[sub_resource type="Resource" id="Resource_42l45"]
+script = ExtResource("1_0la4q")
+speaker = "Marco"
+line = "Have you started farming yet? Its Really easy!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_tqoxq"]
+script = ExtResource("1_0la4q")
+speaker = "Marco"
+line = "Just make sure to water your plants every day"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_suvey"]
+script = ExtResource("1_0la4q")
+speaker = "Marco"
+line = "The Next day when you wake up, they will grow big and strong!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[resource]
+script = ExtResource("2_csbk6")
+lines = Array[ExtResource("1_0la4q")]([SubResource("Resource_42l45"), SubResource("Resource_tqoxq"), SubResource("Resource_suvey")])
+typerwriter_effect = true
+typewriter_speed = 1.0
+allow_gameplay_during = false
+next_on_tween_finish = false
+metadata/_custom_type_script = "uid://b548iklm65l3r"

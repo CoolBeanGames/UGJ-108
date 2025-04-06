@@ -13,6 +13,7 @@ func enter_state():
 	manager.dialog_index = 0
 	Autoload.input_paused=false
 	canvas.deactivate_dialog_ui(false)
+	manager.dialog_ended.emit()
 	transition(manager.idle)
 	super.enter_state()
 

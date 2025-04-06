@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctwxkm6gj2asj"]
+
+[ext_resource type="PackedScene" uid="uid://cgorglmw7rv3i" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/character-male-b.glb" id="1_bcf1m"]
+
+[node name="marco" instance=ExtResource("1_bcf1m")]
+
+[node name="character-male-b" parent="." index="0"]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)

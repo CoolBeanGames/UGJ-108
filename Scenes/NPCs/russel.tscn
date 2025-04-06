@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b10b4jxn1bwey"]
+
+[ext_resource type="PackedScene" uid="uid://cnpn0ormgxgyg" path="res://Scenes/NPCs/npc.tscn" id="1_xanrw"]
+[ext_resource type="Script" uid="uid://bvik80tuml534" path="res://Scripts/NPC/russel.gd" id="2_ae804"]
+[ext_resource type="PackedScene" uid="uid://1n7fjgscw4c" path="res://Scenes/Model_Scenes/russel_model.tscn" id="3_rhpba"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bwdtpyemenkh0" path="res://Resources/Animation_Trees/russel_animation.tres" id="4_752ao"]
+
+[node name="NPC" node_paths=PackedStringArray("model") instance=ExtResource("1_xanrw")]
+script = ExtResource("2_ae804")
+model = NodePath("russel_model")
+
+[node name="russel_model" parent="." index="0" instance=ExtResource("3_rhpba")]
+
+[node name="AnimationTree" parent="." index="3"]
+root_node = NodePath("../russel_model")
+tree_root = ExtResource("4_752ao")
+anim_player = NodePath("../russel_model/AnimationPlayer")
+
+[editable path="russel_model"]

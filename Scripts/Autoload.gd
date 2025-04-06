@@ -10,6 +10,7 @@ class_name auto_load
 @export var day : int = 0
 var savedata_path : String
 var settings_path : String
+@export var points_on_interest : Array[Node3D]
 
 @export var settings : Dictionary
 

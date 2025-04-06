@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2vjhpp40b0j7"]
+
+[ext_resource type="PackedScene" uid="uid://bfa4t35d7c20b" path="res://Kenny/Model Kits/kenney_survival-kit/Models/GLB format/box-large-open.glb" id="1_x2h17"]
+
+[node name="shiping_box_model" instance=ExtResource("1_x2h17")]

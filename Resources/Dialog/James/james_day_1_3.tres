@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="conversation" load_steps=4 format=3 uid="uid://dbo0bh0gv2ciw"]
+
+[ext_resource type="Script" uid="uid://ddxpxhi4sggxi" path="res://Scripts/dialog_system/resources/dialog_line.gd" id="1_1rs4x"]
+[ext_resource type="Script" uid="uid://b548iklm65l3r" path="res://Scripts/dialog_system/resources/conversation.gd" id="2_t241r"]
+
+[sub_resource type="Resource" id="Resource_h5l6h"]
+script = ExtResource("1_1rs4x")
+speaker = "James"
+line = "..."
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[resource]
+script = ExtResource("2_t241r")
+lines = Array[ExtResource("1_1rs4x")]([SubResource("Resource_h5l6h")])
+typerwriter_effect = true
+typewriter_speed = 1.0
+allow_gameplay_during = false
+next_on_tween_finish = false
+metadata/_custom_type_script = "uid://b548iklm65l3r"

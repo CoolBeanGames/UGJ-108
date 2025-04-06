@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://c2ympu0x45uro"]
 
-[ext_resource type="Script" uid="uid://b8ptx1ag61qsi" path="res://Scripts/crop_plot.gd" id="1_1tbt6"]
+[ext_resource type="Script" uid="uid://b8ptx1ag61qsi" path="res://Scripts/Interactable_Objects/crop_plot.gd" id="1_1tbt6"]
 [ext_resource type="PackedScene" uid="uid://btkrdhjxlhbs4" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageA.glb" id="1_enl0n"]
 [ext_resource type="PackedScene" uid="uid://ndcvvw285m00" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageB.glb" id="2_1tbt6"]
 [ext_resource type="PackedScene" uid="uid://0wxe0oa5qu3h" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageC.glb" id="3_e0qll"]
 [ext_resource type="PackedScene" uid="uid://b03p5x8om447h" path="res://Kenny/Model Kits/kenney_nature-kit/Models/GLTF format/crops_cornStageD.glb" id="4_gs728"]
-[ext_resource type="AudioStream" uid="uid://bqgxe4f07e7pv" path="res://Audio/zapsplat_cartoon_pop_wet_could_be_bubble_or_liquid_001_80362.mp3" id="6_hmfi8"]
+[ext_resource type="AudioStream" uid="uid://bqgxe4f07e7pv" path="res://Audio/plant_crop.mp3" id="6_hmfi8"]
 [ext_resource type="Script" uid="uid://b5aev0a7vyvw7" path="res://Scenes/Overload/audio_player.gd" id="7_y7b4h"]
-[ext_resource type="AudioStream" uid="uid://bbwvsm11thj57" path="res://Audio/zapsplat_nature_water_movement_surface_splash_small_003_112809.mp3" id="8_dkqxx"]
+[ext_resource type="AudioStream" uid="uid://bbwvsm11thj57" path="res://Audio/water_crop.mp3" id="8_dkqxx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e0qll"]
 size = Vector3(0.354492, 0.589111, 0.294037)

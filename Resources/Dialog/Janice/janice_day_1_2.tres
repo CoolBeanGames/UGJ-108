@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="conversation" load_steps=6 format=3 uid="uid://b4ssux3kqge45"]
+
+[ext_resource type="Script" uid="uid://ddxpxhi4sggxi" path="res://Scripts/dialog_system/resources/dialog_line.gd" id="1_81x5i"]
+[ext_resource type="Script" uid="uid://b548iklm65l3r" path="res://Scripts/dialog_system/resources/conversation.gd" id="2_kob2d"]
+
+[sub_resource type="Resource" id="Resource_a176g"]
+script = ExtResource("1_81x5i")
+speaker = "Janice"
+line = "Sorry about the prank! just wanted to razz the new guy!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_6yj3o"]
+script = ExtResource("1_81x5i")
+speaker = "Janice"
+line = "Anyways, Im janice, welcome to our little community!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_20v3u"]
+script = ExtResource("1_81x5i")
+speaker = "Janice"
+line = "I manage the produce box, so at the end of the day i empty it out and sell all the goods!"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[resource]
+script = ExtResource("2_kob2d")
+lines = Array[ExtResource("1_81x5i")]([SubResource("Resource_a176g"), SubResource("Resource_6yj3o"), SubResource("Resource_20v3u")])
+typerwriter_effect = true
+typewriter_speed = 1.0
+allow_gameplay_during = false
+next_on_tween_finish = false
+metadata/_custom_type_script = "uid://b548iklm65l3r"

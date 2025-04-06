@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1n7fjgscw4c"]
+
+[ext_resource type="PackedScene" uid="uid://2f5108cx84yu" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/character-male-a.glb" id="1_f6j6i"]
+
+[node name="russel_model" instance=ExtResource("1_f6j6i")]
+
+[node name="character-male-a" parent="." index="0"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

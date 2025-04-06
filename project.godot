@@ -23,13 +23,14 @@ scene_manager="*res://Scripts/Scene_Manager.gd"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/A_Bra/Documents/happy vale 1.avi"
+movie_writer/movie_file="C:/Users/A_Bra/Documents/happy vale 2.avi"
 
 [global_group]
 
 navigation_mesh_source_group=""
 raycast_target=""
 player=""
+npc=""
 
 [input]
 
@@ -83,6 +84,13 @@ cancel={
 3d_physics/layer_3="npc"
 3d_physics/layer_4="world"
 3d_physics/layer_5="player_raycast"
+3d_physics/layer_6="player_weapon"
+3d_physics/layer_7="npc_weapon"
+3d_physics/layer_8="sales_box"
+
+[navigation]
+
+3d/default_cell_size=0.01
 
 [rendering]
 

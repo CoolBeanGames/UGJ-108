@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://brbe5c40x3j02"]
+
+[ext_resource type="Script" uid="uid://drnjbe7xvocvk" path="res://shipping_box.gd" id="1_0nk1i"]
+[ext_resource type="PackedScene" uid="uid://b2vjhpp40b0j7" path="res://Scenes/Model_Scenes/shiping_box_model.tscn" id="2_gyc3x"]
+[ext_resource type="AudioStream" uid="uid://60foit6c6epu" path="res://Audio/money_sound.mp3" id="3_5coao"]
+[ext_resource type="Script" uid="uid://b5aev0a7vyvw7" path="res://Scenes/Overload/audio_player.gd" id="4_a04nw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tbipc"]
+radius = 0.722367
+
+[node name="shipping_box" type="Node3D"]
+
+[node name="shiping_box_model" parent="." instance=ExtResource("2_gyc3x")]
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("money_sound_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115389, 0)
+collision_layer = 128
+script = ExtResource("1_0nk1i")
+money_sound_player = NodePath("../audio_player")
+interact_text = "Sell all crops"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_tbipc")
+
+[node name="audio_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5coao")
+script = ExtResource("4_a04nw")
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

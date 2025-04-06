@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://ibtisd4sufcs"]
+
+[ext_resource type="PackedScene" uid="uid://xs4viscynsk0" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/player_model.glb" id="1_bxcbr"]
+[ext_resource type="Script" uid="uid://bxk7on8t18q0" path="res://Scripts/Player/character_female_c.gd" id="2_2x7eh"]
+[ext_resource type="PackedScene" uid="uid://cjgnumjjsabjs" path="res://Kenny/Model Kits/kenney_survival-kit/Models/GLB format/tool-pickaxe.glb" id="3_csmbh"]
+[ext_resource type="AudioStream" uid="uid://c8ycck68xtyv8" path="res://Audio/foot_step.mp3" id="4_0me7v"]
+[ext_resource type="Script" uid="uid://b5aev0a7vyvw7" path="res://Scenes/Overload/audio_player.gd" id="5_6yvm8"]
+[ext_resource type="AudioStream" uid="uid://cga22j25rrce" path="res://Audio/weapon_swing.mp3" id="6_c1keo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mqtts"]
+radius = 0.25
+
+[node name="player_model" node_paths=PackedStringArray("walk_sound_left", "walk_sound_right", "weapon_swing_sound") instance=ExtResource("1_bxcbr")]
+script = ExtResource("2_2x7eh")
+walk_sound_left = NodePath("left_foot")
+walk_sound_right = NodePath("right_foot")
+weapon_swing_sound = NodePath("weapon_swing")
+
+[node name="Skeleton3D" parent="character-male-f" index="0"]
+bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
+bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="character-male-f/Skeleton3D" index="2"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.0998968, 0.28775, -0.01725)
+bone_name = "arm-left"
+bone_idx = 4
+
+[node name="tool-pickaxe2" parent="character-male-f/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_csmbh")]
+transform = Transform3D(0.86471, -0.72876, -1.6496, -1.49596, 0.731834, -1.10748, 1.00716, 1.7127, -0.228686, 0.221716, 0.00849047, 0.06351)
+
+[node name="damage_area" type="Area3D" parent="character-male-f/Skeleton3D/BoneAttachment3D/tool-pickaxe2" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character-male-f/Skeleton3D/BoneAttachment3D/tool-pickaxe2/damage_area" index="0"]
+transform = Transform3D(0.5, 1.49011e-08, -1.86264e-09, -1.49011e-08, 0.5, 1.49012e-08, 1.86264e-09, -1.49012e-08, 0.5, -0.00840906, 0.222189, 0.000223726)
+shape = SubResource("SphereShape3D_mqtts")
+
+[node name="left_foot" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("4_0me7v")
+volume_db = -12.0
+script = ExtResource("5_6yvm8")
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"
+
+[node name="right_foot" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("4_0me7v")
+volume_db = -12.0
+pitch_scale = 0.8
+script = ExtResource("5_6yvm8")
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"
+
+[node name="weapon_swing" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("6_c1keo")
+volume_db = -6.0
+script = ExtResource("5_6yvm8")
+randomize_pitch = true
+metadata/_custom_type_script = "uid://b5aev0a7vyvw7"

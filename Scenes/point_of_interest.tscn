@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://beujoqa835bav"]
+
+[ext_resource type="Script" uid="uid://cys1eawb6q0ll" path="res://Scripts/point_of_interest.gd" id="1_eses7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eses7"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.160784, 0.466667, 0.364706, 0.403922)
+
+[node name="Point_Of_Interest" type="Node3D"]
+script = ExtResource("1_eses7")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+material_override = SubResource("StandardMaterial3D_eses7")
+radius = 0.2
+height = 1.0

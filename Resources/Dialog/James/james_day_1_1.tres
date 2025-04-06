@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="conversation" load_steps=9 format=3 uid="uid://t2h4ueijiri2"]
+
+[ext_resource type="Script" uid="uid://ddxpxhi4sggxi" path="res://Scripts/dialog_system/resources/dialog_line.gd" id="1_ww1m6"]
+[ext_resource type="Script" uid="uid://b548iklm65l3r" path="res://Scripts/dialog_system/resources/conversation.gd" id="2_a1qoj"]
+
+[sub_resource type="Resource" id="Resource_1ui8m"]
+script = ExtResource("1_ww1m6")
+speaker = "James"
+line = "erm... yes hello im james"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_3nnfa"]
+script = ExtResource("1_ww1m6")
+speaker = "James"
+line = "Normally i run the shop here in happy vale"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_vnakf"]
+script = ExtResource("1_ww1m6")
+speaker = "James"
+line = "but im still waiting on some supplies to come in..."
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_xcw7j"]
+script = ExtResource("1_ww1m6")
+speaker = "James"
+line = "I should be able to open next week... yeah that sounds about right.... one week"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_bx6u4"]
+script = ExtResource("1_ww1m6")
+speaker = "James"
+line = "(ugh i hate this)"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = true
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[sub_resource type="Resource" id="Resource_hpyx2"]
+script = ExtResource("1_ww1m6")
+speaker = "James"
+line = "oh.. it its nothing, just thinking about stuff"
+wait_for_confirm = true
+timed_line = false
+time = 1.0
+is_thought = false
+metadata/_custom_type_script = "uid://ddxpxhi4sggxi"
+
+[resource]
+script = ExtResource("2_a1qoj")
+lines = Array[ExtResource("1_ww1m6")]([SubResource("Resource_1ui8m"), SubResource("Resource_3nnfa"), SubResource("Resource_vnakf"), SubResource("Resource_xcw7j"), SubResource("Resource_bx6u4"), SubResource("Resource_hpyx2")])
+typerwriter_effect = true
+typewriter_speed = 1.0
+allow_gameplay_during = false
+next_on_tween_finish = false
+metadata/_custom_type_script = "uid://b548iklm65l3r"

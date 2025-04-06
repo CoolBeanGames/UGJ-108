@@ -1,0 +1,53 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=12 format=3 uid="uid://bwdtpyemenkh0"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mmokf"]
+animation = &"attack-melee-left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jmnnp"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rojtq"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jmnnp"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mmokf"]
+advance_mode = 2
+advance_condition = &"notWalk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6nfli"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kboa7"]
+advance_mode = 2
+advance_condition = &"notWalk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qd6yq"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fccqw"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yplii"]
+advance_mode = 2
+advance_condition = &"not_attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hb41u"]
+advance_mode = 2
+advance_condition = &"not_attack"
+
+[resource]
+allow_transition_to_self = true
+states/attack/node = SubResource("AnimationNodeAnimation_mmokf")
+states/attack/position = Vector2(599.41, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_jmnnp")
+states/idle/position = Vector2(372.014, 55.0745)
+states/walk/node = SubResource("AnimationNodeAnimation_rojtq")
+states/walk/position = Vector2(372.798, 137.362)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_jmnnp"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_mmokf"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_6nfli"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_kboa7"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_qd6yq"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_fccqw"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_yplii"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_hb41u")]
+graph_offset = Vector2(-63.59, -18.492)

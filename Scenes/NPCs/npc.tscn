@@ -1,21 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnpn0ormgxgyg"]
 
-[ext_resource type="PackedScene" uid="uid://dklotfu7a5k5r" path="res://Kenny/Model Kits/kenney_mini-characters/Models/GLB format/character-male-d.glb" id="1_7lr2c"]
 [ext_resource type="Script" uid="uid://8jnyg7rvhj2s" path="res://Scripts/NPC/npc.gd" id="1_n58mx"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cn3v0lt8vxgp0" path="res://Resources/Animation_Trees/player_state_machine.tres" id="3_q0ilr"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bxtme1illsri5" path="res://Resources/Animation_Trees/state_machine_base.tres" id="2_n58mx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n58mx"]
 radius = 0.103868
 height = 0.333158
 
-[node name="NPC" type="CharacterBody3D" node_paths=PackedStringArray("nav", "model", "anim")]
-script = ExtResource("1_n58mx")
-nav = NodePath("NavigationAgent3D")
-model = NodePath("character-male-d2")
-anim = NodePath("AnimationTree")
+[sub_resource type="SphereShape3D" id="SphereShape3D_q0ilr"]
 
-[node name="character-male-d2" parent="." instance=ExtResource("1_7lr2c")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
+[node name="NPC" type="CharacterBody3D" node_paths=PackedStringArray("nav", "anim") groups=["npc"]]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_n58mx")
+npc_name = "Russel"
+nav = NodePath("NavigationAgent3D")
+anim = NodePath("AnimationTree")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -24,15 +24,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163158, 0)
 shape = SubResource("CapsuleShape3D_n58mx")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../character-male-d2")
-tree_root = ExtResource("3_q0ilr")
-anim_player = NodePath("../character-male-d2/AnimationPlayer")
+tree_root = ExtResource("2_n58mx")
+parameters/conditions/attack = false
+parameters/conditions/dead = false
 parameters/conditions/notWalk = false
+parameters/conditions/not_attack = false
 parameters/conditions/walk = false
 
 [node name="wait_to_adjust" type="Timer" parent="."]
 
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_q0ilr")
+
 [connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
 [connection signal="timeout" from="wait_to_adjust" to="." method="_on_wait_to_adjust_timeout"]
-
-[editable path="character-male-d2"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
