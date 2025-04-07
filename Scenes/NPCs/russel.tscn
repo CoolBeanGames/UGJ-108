@@ -11,6 +11,12 @@ model = NodePath("russel_model")
 
 [node name="russel_model" parent="." index="0" instance=ExtResource("3_rhpba")]
 
+[node name="Skeleton3D" parent="russel_model/character-male-a" index="0"]
+bones/0/position = Vector3(0, 0.1, 0)
+bones/0/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/4/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/5/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
 [node name="AnimationTree" parent="." index="3"]
 root_node = NodePath("../russel_model")
 tree_root = ExtResource("4_752ao")

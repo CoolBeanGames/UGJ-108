@@ -95,3 +95,7 @@ cancel={
 [rendering]
 
 renderer/rendering_method="mobile"
+lights_and_shadows/directional_shadow/size=512
+lights_and_shadows/directional_shadow/size.mobile=256
+lights_and_shadows/positional_shadow/atlas_size=512
+lights_and_shadows/positional_shadow/atlas_size.mobile=256

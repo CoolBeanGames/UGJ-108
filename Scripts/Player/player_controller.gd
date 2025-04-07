@@ -12,13 +12,17 @@ var input : Vector2
 var is_walking : bool
 var target_rotation : float
 var enemies_in_attack_area : int = 0
-
-signal attacking
+@export var combat_mode : bool = false
+@export var damage : int = 1
+@export var attack_bubble_spawn_pos : Node3D
+@export var damage_bubble_packed_scene : PackedScene
 
 func _ready() -> void:
 	Autoload.references.set("player",self)
 	anim_tree.active = true
 	target_rotation = player_model.rotation.y
+	if Autoload.day > 5:
+		combat_mode = true
 
 func update_input():
 	input = Input.get_vector("left","right","down","up")
@@ -30,25 +34,17 @@ func _process(delta):
 	if !Autoload.input_paused:
 		update_input()
 		look_facing(delta)
-		update_velocity()
+		update_velocity(delta)
 		lerp_rot(delta)
 		if Input.is_action_just_released("action") and !dont_attack:
 			attack()
-		if is_attacking and !attack_done and enemy_in_attack_area:
-			print("attacked enemy")
-			attacking.emit()
-			var signal_name = "attacking"
-			var connections = get_signal_connection_list(signal_name)
-			for conn in connections:
-				if conn.has("target") and conn.has("method"):
-					var target : Object = conn["target"]
-					var method : String= conn["method"]
-					if is_connected(signal_name, Callable(target, method)):
-						disconnect(signal_name, Callable(target, method))
-			print(attacking.get_connections())
+		else:
+			if Input.is_action_just_released("action"):
+				print("could not attack, dont attack is set to: " , dont_attack)
 
-func update_velocity():
+func update_velocity(delta : float):
 	velocity = Vector3(-input.x * walk_speed,0,input.y*walk_speed)
+	velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * (delta*5)
 	move_and_slide()
 
 func look_facing(delta : float): ##make the players body face the correct direction
@@ -74,34 +70,25 @@ func attack():
 		anim_tree["parameters/conditions/attack"] = true
 		is_attacking=true
 		attack_done=false
+		
+		var bubble : damager = damage_bubble_packed_scene.instantiate()
+		var game_p : Node = Autoload.references["game"]
+		game_p.add_child(bubble)
+		bubble.global_position = attack_bubble_spawn_pos.global_position
+		bubble.initialize(damage)
+		
+		$player_model/damage_particles.emitting = true
 
 func end_attack():
+	print("end attack")
 	$attack_timer.stop()
 	anim_tree["parameters/conditions/not_attack"] = true
 	anim_tree["parameters/conditions/attack"] = false
 	is_attacking = false
-	print(attacking.get_connections().size())
-
 
 func _on_attack_enter(body: Node3D) -> void:
 	enemy_in_attack_area = true
 	enemies_in_attack_area += 1
-	var current = body
-	var found_body : bool = false
-	while current:
-		if current.is_in_group("npc"):
-			print("Found NPC: ", current.name)
-			found_body = true
-			break
-		if current.get_parent() == null:
-			print("Reached the root without finding an NPC.")
-			break
-		current = current.get_parent()
-	if found_body:
-		print("connecting signal")
-		if !attacking.is_connected(current.take_damage):
-			attacking.connect(current.take_damage)
-
 
 func _on_attack_exit(body: Node3D) -> void:
 	enemies_in_attack_area -=1

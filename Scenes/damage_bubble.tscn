@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://btl6am7y8usoj"]
+
+[ext_resource type="Script" uid="uid://c5tsnlqv1rd7g" path="res://Scripts/Combat/damage_bubble.gd" id="1_7e1a5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xbro0"]
+radius = 0.25
+
+[node name="damage_bubble" type="Area3D"]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_7e1a5")
+
+[node name="damage_life_timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xbro0")
+
+[connection signal="body_entered" from="." to="." method="enemy_enter"]
+[connection signal="body_exited" from="." to="." method="enemy_exit"]
+[connection signal="timeout" from="damage_life_timer" to="." method="end_damage"]
